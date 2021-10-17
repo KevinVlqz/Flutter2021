@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "601892679168",
+    "project_id": "basefarmaciageo",
+    "storage_bucket": "basefarmaciageo.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:601892679168:android:90e7e9075d3840b113f2e5",
+        "android_client_info": {
+          "package_name": "com.example.flutter_farmacias"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "601892679168-ii09qmhbnsvphh5l3katu2vid6t8m8ll.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPz6IGZ_lnrh3-eriIJpqlyxQWzIlth0Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "601892679168-ii09qmhbnsvphh5l3katu2vid6t8m8ll.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
