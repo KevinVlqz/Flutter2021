@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_farmacias/Pantallas/menu.dart';
 
@@ -21,7 +22,11 @@ class Menu extends StatefulWidget {
   _MenuState createState() => _MenuState();
 }
 
+CollectionReference _productss =
+      FirebaseFirestore.instance.collection('farmacias');
 class _MenuState extends State<Menu> {
+   
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +52,15 @@ class _MenuState extends State<Menu> {
 
         image: DecorationImage(
             image: AssetImage("assets/img/background.jpg",), fit: BoxFit.cover)),
-            child: CuerpoAPP(context),
+            child: Column(
+              
+              children: [
+                Encabezado(),
+                CuerpoAPP(context),
+              ],
+            )
+            
+            
        )
         
     );
@@ -57,21 +70,59 @@ class _MenuState extends State<Menu> {
 }
 
 Widget CuerpoAPP(BuildContext c){
-  return ListView(
-    
-    
-    children: <Widget>[
-      SizedBox(
-        height: 15,
-      ),
-      Encabezado(),
-       SizedBox(
-        height: 15,
-      ),
-      ListaFarmacias(c),
- 
-    ],
+  return SizedBox(
+height: MediaQuery.of(c).size.height/1.2,
 
+child: StreamBuilder(
+        stream: _productss.snapshots(),
+        builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
+          if (streamSnapshot.hasData) {
+            return ListView.builder(
+              scrollDirection: Axis.vertical,
+              itemCount: streamSnapshot.data!.docs.length,
+              itemBuilder: (context, index) {
+                final DocumentSnapshot documentSnapshot =
+                    streamSnapshot.data!.docs[index];
+                return Card(
+            
+                  child: 
+                  ListTile(
+                    title: Text(documentSnapshot['nombreFarmacia']),
+                    subtitle: Text(documentSnapshot['contacto'].toString()),
+                    trailing: SizedBox(
+                      width: 100,
+                      child: Row(
+                        children: [
+                          Container(
+                            child: IconButton(
+                            icon: Icon(Icons.room_outlined,color: Colors.red,size: 30,),
+                            onPressed: () {
+                            },
+                          ),
+                            
+                          ),Container(
+
+                            child: IconButton(
+                            icon: Icon(Icons.favorite,color: Colors.red,size: 30,),
+                            onPressed: () {
+                            },
+                          ),
+                          )
+                        ],
+                      ),
+                    ),
+                  ),
+                  
+                );
+              },
+            );
+          }
+
+          return Center(
+            child: CircularProgressIndicator(),
+          );
+        },
+      ),
   );
 }
 
@@ -82,224 +133,6 @@ Widget Encabezado(){
   );
 }
 
-Widget ListaFarmacias(BuildContext context){
-  return Column(
-    
-    mainAxisAlignment: MainAxisAlignment.center,
-    children:<Widget> [
-      Card(
-        
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: Colors.white,
-            child: Row(
-              
-              children: <Widget>[
-                Container(
-                  width: 60,
-                  height: 50,
-                  child: Image.asset('assets/img/imgFarm.png'),
-                ),
-                Container(
-              width: MediaQuery.of(context).size.width/2,
+ 
 
-                  child: Text('Farmacia Economicas, Centro',style: TextStyle(fontSize: 20),),
-
-                ),
-                Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.room_outlined,color: Colors.red,size: 30,),
-                ),Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.favorite,color: Colors.red,size: 30,),
-                )
-                    ]
-                  ),
-      ), Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: Colors.white,
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: 60,
-                  height: 50,
-                  child: Image.asset('assets/img/imgFarm.png'),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width/2,
-                  
-                  child: Text('Farmacia Economicas, Apopa',style: TextStyle(fontSize: 20),),
-
-                ),
-                Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.room_outlined,color: Colors.red,size: 30,),
-                ),Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.favorite,color: Colors.red,size: 30,),
-                )
-                    ]
-                  ),
-      ),
-       Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: Colors.white,
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: 60,
-                  height: 50,
-                  child: Image.asset('assets/img/imgFarm.png'),
-                ),
-                Container(
-              width: MediaQuery.of(context).size.width/2,
-                  child: Text('Farmacia Economicas, Soyapango',style: TextStyle(fontSize: 20),),
-
-                ),
-                Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.room_outlined,color: Colors.red,size: 30,),
-                ),Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.favorite_border,color: Colors.red,size: 30,),
-                )
-                    ]
-                  ),
-      ), Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: Colors.white,
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: 60,
-                  height: 50,
-                  child: Image.asset('assets/img/imgFarm.png'),
-                ),
-                Container(
-                 width: MediaQuery.of(context).size.width/2,
-
-                  child: Text('Farmacia Economicas, San Benito',style: TextStyle(fontSize: 20),),
-
-                ),
-                Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.room_outlined,color: Colors.red,size: 30,),
-                ),Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.favorite,color: Colors.red,size: 30,),
-                )
-                    ]
-                  ),
-      ),
-       Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: Colors.white,
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: 60,
-                  height: 50,
-                  child: Image.asset('assets/img/imgFarm.png'),
-                ),
-                Container(
-                   width: MediaQuery.of(context).size.width/2,
-
-                  child: Text('Farmacia Economicas, Av. España',style: TextStyle(fontSize: 20),),
-
-                ),
-                Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.room_outlined,color: Colors.red,size: 30,),
-                ),Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.favorite_border,color: Colors.red,size: 30,),
-                )
-                    ]
-                  ),
-      ),
-       Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: Colors.white,
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: 60,
-                  height: 50,
-                  child: Image.asset('assets/img/imgFarm.png'),
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width/2,
-
-                  child: Text('Farmacia Economicas, Escalon',style: TextStyle(fontSize: 20),),
-
-                ),
-                Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.room_outlined,color: Colors.red,size: 30,),
-                ),Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.favorite_border,color: Colors.red,size: 30,),
-                )
-                    ]
-                  ),
-      ),
-       Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: Colors.white,
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: 60,
-                  height: 50,
-                  child: Image.asset('assets/img/imgFarm.png'),
-                ),
-                Container(
-              width: MediaQuery.of(context).size.width/2,
-
-                  child: Text('Farmacia Economicas, Metrocentro',style: TextStyle(fontSize: 20),),
-
-                ),
-                Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.room_outlined,color: Colors.red,size: 30,),
-                ),Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.favorite_border,color: Colors.red,size: 30,),
-                )
-                    ]
-                  ),
-      ),
-       Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: Colors.white,
-            child: Row(
-              children: <Widget>[
-                Container(
-                  width: 60,
-                  height: 50,
-                  child: Image.asset('assets/img/imgFarm.png'),
-                ),
-                Container(
-              width: MediaQuery.of(context).size.width/2,
-
-                  child: Text('Farmacia Economicas, Plaza Mundo',style: TextStyle(fontSize: 20),),
-
-                ),
-                Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.room_outlined,color: Colors.red,size: 30,),
-                ),Container(
-                  padding:EdgeInsets.all(20),
-                  child: Icon(Icons.favorite,color: Colors.red,size: 30,),
-                )
-                    ]
-                  ),
-      ),
-      
-    
-    ],
-
-  );
-  
-  
-}
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_farmacias/Pantallas/menu.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class MapaFarm extends StatelessWidget {
   const MapaFarm({Key? key}) : super(key: key);
@@ -64,7 +65,8 @@ Widget CuerpoAPP(BuildContext c){
        SizedBox(
         height: 30,
       ),
-      CuerpoMapa(),
+      CuerpoMapa()
+      
       //ListaFarmacias(),
  
     ],
@@ -86,12 +88,18 @@ Widget CuerpoMapa(){
     height: 500.0,
     decoration: BoxDecoration(
       borderRadius: new BorderRadius.circular(30.0),
-      image: DecorationImage(
-      image: AssetImage('assets/img/imgcapMapa.png'),
-        fit: BoxFit.cover,
-      ),
     ),
-    //child: Image.asset('assets/img/imgcapMapa.png'),
+    child:  GoogleMap( //Map widget from google_maps_flutter package
+                    zoomGesturesEnabled: true, //enable Zoom in, out on map
+                    initialCameraPosition: CameraPosition( //innital position in map
+                      target: LatLng(13.683016800337512,-89.26820061539786), //initial position
+                      zoom: 15.0, //initial zoom level
+                    ),
+                     //markers to show on map
+                    mapType: MapType.normal, //map type
+                    onMapCreated: (controller) { //method called when map is created
+                    },
+                  ),
         
   );
   

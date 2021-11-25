@@ -3,6 +3,8 @@
    <application
         android:label="flutter_farmacias"
         android:icon="@mipmap/ic_launcher">
+        <meta-data android:name="com.google.android.geo.API_KEY"
+               android:value="AIzaSyBy5gn6q5D8I0dIYC-cTB7e8yqYQj_j7AY"/>
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
