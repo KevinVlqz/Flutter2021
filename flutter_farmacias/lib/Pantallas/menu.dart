@@ -3,6 +3,7 @@ import 'package:flutter_farmacias/Pantallas/DetalleFarm.dart';
 import 'package:flutter_farmacias/Pantallas/ListadoFarmacias.dart';
 import 'package:flutter_farmacias/Pantallas/MapaFarmaciasCr.dart';
 import 'package:flutter_farmacias/Pantallas/Registrar.dart';
+import 'package:flutter_farmacias/main.dart';
 
 
 class AppFarmacia extends StatelessWidget {
@@ -11,6 +12,7 @@ class AppFarmacia extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'FarmaciaAPP',
       home: Menu(),
     );
@@ -230,7 +232,7 @@ Widget Fila2(BuildContext context){
                   
                   Navigator.push(context, 
                   MaterialPageRoute(builder: (context){
-                    return ListFarmC();
+                    return LoginApp();
                   }
                   
                   )
@@ -243,7 +245,7 @@ Widget Fila2(BuildContext context){
               ),
                 ),
               //Image.asset('assets/img/imguser.png'),
-              Text("Mis datos",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20))
+              Text("Cerrar Sesion",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,))
             ],
           ),
         ),

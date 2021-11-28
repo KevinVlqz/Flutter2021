@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_farmacias/Pantallas/lstfarm.dart';
 import 'package:flutter_farmacias/Pantallas/menu.dart';
 
 class ListFarmC extends StatelessWidget {
@@ -8,6 +9,7 @@ class ListFarmC extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'FarmaciaAPP',
       
       home: Menu(),
@@ -56,6 +58,16 @@ class _MenuState extends State<Menu> {
               
               children: [
                 Encabezado(),
+                 Container(
+                height: 101.0,
+                width: 520.0,
+                decoration: BoxDecoration(
+             
+              borderRadius: new BorderRadius.circular(10.0),
+              image: DecorationImage(
+                image: AssetImage('assets/img/logofarm.png'),
+                fit: BoxFit.cover,
+              ))),
                 CuerpoAPP(context),
               ],
             )
@@ -71,7 +83,7 @@ class _MenuState extends State<Menu> {
 
 Widget CuerpoAPP(BuildContext c){
   return SizedBox(
-height: MediaQuery.of(c).size.height/1.2,
+height: MediaQuery.of(c).size.height/1.6,
 
 child: StreamBuilder(
         stream: _productss.snapshots(),
@@ -88,7 +100,7 @@ child: StreamBuilder(
                   child: 
                   ListTile(
                     title: Text(documentSnapshot['nombreFarmacia']),
-                    subtitle: Text(documentSnapshot['contacto'].toString()),
+                    subtitle: Text(documentSnapshot['direccion'].toString()),
                     trailing: SizedBox(
                       width: 100,
                       child: Row(
@@ -97,6 +109,15 @@ child: StreamBuilder(
                             child: IconButton(
                             icon: Icon(Icons.room_outlined,color: Colors.red,size: 30,),
                             onPressed: () {
+                              Navigator.push(context, 
+                              MaterialPageRoute(builder: (context){
+                                String n=documentSnapshot['nombreFarmacia'].toString();
+                                String la=documentSnapshot['latitud'].toString();
+                                String lo=documentSnapshot['longitud'].toString();
+                                return MapaMarker(nombre: n, lat:la,long: lo);
+                              }
+                              )
+                              );
                             },
                           ),
                             
@@ -105,6 +126,7 @@ child: StreamBuilder(
                             child: IconButton(
                             icon: Icon(Icons.favorite,color: Colors.red,size: 30,),
                             onPressed: () {
+                              
                             },
                           ),
                           )

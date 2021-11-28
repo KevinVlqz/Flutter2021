@@ -18,6 +18,7 @@ class LoginApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: "Login",
       home: Inicio(),
     );
@@ -58,15 +59,13 @@ class _InicioState extends State<Inicio> {
               return AppFarmacia();
 
             },),);
-      }else{
-       myController.text="Error de ingreso";
-       pwd.text="";
-       
       }
       
       
       //user.add(documentos.data());
     }
+       myController.text="Error de ingreso";
+       pwd.text="";
   }
 
 }

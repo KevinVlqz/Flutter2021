@@ -9,6 +9,7 @@ class contwhat extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
         title: "Filas y Columnas", home: Center(child: HorarioFarmacias()));
   }
 }
