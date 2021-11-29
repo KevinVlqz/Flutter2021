@@ -18,7 +18,6 @@ class LoginApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: "Login",
       home: Inicio(),
     );
@@ -45,11 +44,13 @@ class _InicioState extends State<Inicio> {
     
   }
   
-  CollectionReference collectionReference =
-    FirebaseFirestore.instance.collection("usuarios");
+  CollectionReference collectionReference = FirebaseFirestore.instance.collection("usuarios");
 
   void  getUsuarios() async {
+    int c=0;
+
   QuerySnapshot usuarios = await collectionReference.get();
+  int x=usuarios.docs.length;
   if (usuarios.docs.length != 0) {
     for (var documentos in usuarios.docs) {
       //documentos["correo"];
@@ -60,12 +61,21 @@ class _InicioState extends State<Inicio> {
 
             },),);
       }
-      
-      
+      else{
+        c=c+1;
+      }
       //user.add(documentos.data());
     }
-       myController.text="Error de ingreso";
-       pwd.text="";
+    if(c==x){
+      showDialog(context: context, 
+       barrierDismissible: false, 
+       builder: (BuildContext context){
+         return DialogAlert('Error de Ingreso: Verifique sus datos');
+       }
+       );
+
+    }
+    
   }
 
 }
@@ -141,7 +151,7 @@ Widget campoPassword() {
 
 Widget botonIngresar(context) {
   return FlatButton(
-    padding: EdgeInsets.symmetric(horizontal: 175, vertical: 15),
+    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
     color: Colors.blueAccent,
     onPressed: () {
       getUsuarios();
@@ -154,11 +164,11 @@ Widget botonIngresar(context) {
     },
     child: Text(
       "Ingresar",
-      style: TextStyle(fontSize: 22, color: Colors.white),
+      style: TextStyle(fontSize: 15, color: Colors.white),
     ),
     shape: RoundedRectangleBorder(
         side:
-            BorderSide(color: Colors.blue, width: 1, style: BorderStyle.solid),
+            BorderSide(color: Colors.blue, width: 0.5, style: BorderStyle.solid),
         borderRadius: BorderRadius.circular(50)),
   );
 }
@@ -172,7 +182,7 @@ Widget botonIngresar(context) {
 
 Widget botonRegistrarse(context) {
   return FlatButton(
-    padding: EdgeInsets.symmetric(horizontal: 160, vertical: 15),
+    padding: EdgeInsets.symmetric(horizontal: 40, vertical: 10),
     color: Colors.red[700],
     onPressed: () {
       Navigator.push(context, MaterialPageRoute(builder: (context){
@@ -182,7 +192,7 @@ Widget botonRegistrarse(context) {
     },
     child: Text(
       "Registrarse",
-      style: TextStyle(fontSize: 22, color: Colors.white),
+      style: TextStyle(fontSize: 15, color: Colors.white),
     ),
     shape: RoundedRectangleBorder(
         side:
@@ -198,3 +208,39 @@ Widget mensaje() {
   );
 }
 
+class DialogAlert extends StatelessWidget {
+  final title;
+  DialogAlert(this.title);
+  @override
+  Widget build(BuildContext context) {
+    return Dialog(shape: RoundedRectangleBorder(
+      borderRadius: BorderRadius.circular(4),
+    ),
+    child: Container(
+      color: Colors.white70,
+      height: 200,
+      child: Column(
+        children: [
+          Expanded(child: Container(
+            color: Colors.white70,
+            child: Icon(Icons.account_circle, size: 60, color: Colors.deepPurple,),
+          ),),
+          Expanded(child: Container(
+            color: Colors.deepPurpleAccent,
+            child: SizedBox.expand(
+              child: Padding(padding: const EdgeInsets.all(15.0),
+              child: Column(children: [
+                Text(title, style: TextStyle(color: Colors.white),),
+                RaisedButton(onPressed: (){
+                  Navigator.of(context).pop();
+                },
+                color: Colors.white, child: Text('Aceptar'),)
+              ],),),
+            ),
+          ),)
+        ],
+      ),
+    ),
+    );
+  }
+}
