@@ -3,7 +3,9 @@ import 'package:flutter_farmacias/Pantallas/DetalleFarm.dart';
 import 'package:flutter_farmacias/Pantallas/ListadoFarmacias.dart';
 import 'package:flutter_farmacias/Pantallas/MapaFarmaciasCr.dart';
 import 'package:flutter_farmacias/Pantallas/Registrar.dart';
+import 'package:flutter_farmacias/Pantallas/comentarios.dart';
 import 'package:flutter_farmacias/main.dart';
+
 
 
 class AppFarmacia extends StatelessWidget {
@@ -27,13 +29,22 @@ class Menu extends StatefulWidget {
 }
 
 class _MenuState extends State<Menu> {
+  
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      
-      backgroundColor: Colors.indigo.shade100,
       appBar: AppBar(
         title: Text("Menu"),
+        actions: [
+          IconButton(onPressed: (){
+            Navigator.push(context, 
+                  MaterialPageRoute(builder: (context){
+                    return LoginApp();
+                  }
+                  )
+                  );
+          }, icon: Icon(Icons.exit_to_app)),
+        ],
         
         
       ),
@@ -70,7 +81,7 @@ Widget CuerpoAPP(BuildContext c){
 Widget Encabezado(){
   return Center(
     
-    child: Text("Menu FarmApp",style: TextStyle(fontSize:35,color:Colors.white)),
+    child: Text("Menu FarmApp",style: TextStyle(fontSize:35,color:Colors.white,fontWeight: FontWeight.bold,fontStyle: FontStyle.italic)),
   );
 }
 
@@ -87,7 +98,7 @@ Widget Fila1(BuildContext context){
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        color: Colors.deepOrange.shade200,
+        color: Colors.purple.shade700,
         child: Center(
           child: Column(
             children: <Widget>[
@@ -109,7 +120,7 @@ Widget Fila1(BuildContext context){
                 width: MediaQuery.of(context).size.width/3,
               ),
                 ),
-              Text("Farmacias Cercanas",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20))
+              Text("Farmacias Cercanas",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white))
             ],
           ),
           
@@ -128,7 +139,7 @@ Widget Fila1(BuildContext context){
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        color: Colors.deepOrange.shade200,
+        color: Colors.purple.shade700,
         child: Center(
           child: Column(
             children: <Widget>[
@@ -152,7 +163,7 @@ Widget Fila1(BuildContext context){
                 ),
 
               //Image.asset('assets/img/imglista.png'),
-              Text("Listado de Farmacias",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20))
+              Text("Listado de Farmacias",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white))
             ],
           ),
         ),
@@ -182,7 +193,7 @@ Widget Fila2(BuildContext context){
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        color: Colors.deepOrange.shade200,
+        color: Colors.purple.shade700,
         child: Center(
           child: Column(
             children: <Widget>[
@@ -205,7 +216,7 @@ Widget Fila2(BuildContext context){
               ),
                 ),
               //Image.asset('assets/img/imgfav.png'),
-              Text("Favoritos",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20))
+              Text("Favoritos",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white))
             ],
           ),
         ),
@@ -222,7 +233,7 @@ Widget Fila2(BuildContext context){
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(20.0),
         ),
-        color: Colors.deepOrange.shade200,
+        color: Colors.purple.shade700,
         child: Center(
           child: Column(
             children: <Widget>[
@@ -232,20 +243,20 @@ Widget Fila2(BuildContext context){
                   
                   Navigator.push(context, 
                   MaterialPageRoute(builder: (context){
-                    return LoginApp();
+                    return OpinionesComt();
                   }
                   
                   )
                   );
                 },
               child: Ink.image(
-                image: AssetImage('assets/img/imguser.png'),
+                image: AssetImage('assets/img/comentarios.png'),
                  height: 250,
                 width: MediaQuery.of(context).size.width/3,
               ),
                 ),
               //Image.asset('assets/img/imguser.png'),
-              Text("Cerrar Sesion",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,))
+              Text("Foro para Opiniones",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white))
             ],
           ),
         ),
