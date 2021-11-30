@@ -2,18 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_farmacias/Pantallas/ContactoWhat.dart';
 import 'package:flutter_farmacias/Pantallas/menu.dart';
 
-
-
 class detallefm extends StatelessWidget {
   const detallefm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+        debugShowCheckedModeBanner: false,
         title: "Filas y Columnas",
         home: Center(
-          
             child:
                 Farmacias() //HorarioFarmacias(), (Farmacias() Es para la pantalla 1)
             ));
@@ -28,22 +25,27 @@ class Farmacias extends StatelessWidget {
         leading: IconButton(
           icon: Icon(Icons.home),
           onPressed: () {
-            Navigator.push(context, MaterialPageRoute(builder: (context){
-              return AppFarmacia();
-
-            },),);
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) {
+                  return AppFarmacia();
+                },
+              ),
+            );
           },
         ),
-
       ),
       body: Center(
         child: Container(
           decoration: BoxDecoration(
-          image: DecorationImage(
-            image: AssetImage("assets/img/background.jpg",), fit: BoxFit.cover)),
-            child: marcolistadoFarmacias(context),
+              image: DecorationImage(
+                  image: AssetImage(
+                    "assets/img/background.jpg",
+                  ),
+                  fit: BoxFit.cover)),
+          child: marcolistadoFarmacias(context),
           padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
-          
         ),
       ),
     );
@@ -100,19 +102,17 @@ Widget listadoFarmacias(context) {
       ),
       RaisedButton(
           onPressed: () {
-            Navigator.push(context, 
-                  MaterialPageRoute(builder: (context){
-                    return contwhat();
-                  }
-                  
-                  )
-                  );
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return HorarioFarmacias(
+                phone: '50371674258',
+              );
+            }));
           },
           color: Colors.red[300],
           textColor: Colors.white,
           child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
             Icon(Icons.call),
-            Text("   Llamar"),
+            Text("   Contacto"),
             SizedBox(
               width: 10,
             ),
@@ -147,12 +147,18 @@ Widget listadoFarmacias(context) {
             fontSize: 13, color: Colors.black54, fontWeight: FontWeight.w500),
       ),
       RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return HorarioFarmacias(
+                phone: '50379794212',
+              );
+            }));
+          },
           color: Colors.red[300],
           textColor: Colors.white,
           child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
             Icon(Icons.call),
-            Text("   Llamar"),
+            Text("   Contacto"),
             SizedBox(
               width: 10,
             ),
@@ -187,12 +193,18 @@ Widget listadoFarmacias(context) {
             fontSize: 13, color: Colors.black54, fontWeight: FontWeight.w500),
       ),
       RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return HorarioFarmacias(
+                phone: '50372485834',
+              );
+            }));
+          },
           color: Colors.red[300],
           textColor: Colors.white,
           child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
             Icon(Icons.call),
-            Text("   Llamar"),
+            Text("   Contacto"),
             SizedBox(
               width: 10,
             ),
@@ -227,12 +239,18 @@ Widget listadoFarmacias(context) {
             fontSize: 13, color: Colors.black54, fontWeight: FontWeight.w500),
       ),
       RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return HorarioFarmacias(
+                phone: '50363106786',
+              );
+            }));
+          },
           color: Colors.red[300],
           textColor: Colors.white,
           child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
             Icon(Icons.call),
-            Text("   Llamar"),
+            Text("   Contacto"),
             SizedBox(
               width: 10,
             ),
@@ -267,12 +285,18 @@ Widget listadoFarmacias(context) {
             fontSize: 13, color: Colors.black54, fontWeight: FontWeight.w500),
       ),
       RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return HorarioFarmacias(
+                phone: '50377395980',
+              );
+            }));
+          },
           color: Colors.red[300],
           textColor: Colors.white,
           child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
             Icon(Icons.call),
-            Text("   Llamar"),
+            Text("   Contacto"),
             SizedBox(
               width: 10,
             ),
@@ -307,12 +331,18 @@ Widget listadoFarmacias(context) {
             fontSize: 13, color: Colors.black54, fontWeight: FontWeight.w500),
       ),
       RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return HorarioFarmacias(
+                phone: '50377235355',
+              );
+            }));
+          },
           color: Colors.red[300],
           textColor: Colors.white,
           child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
             Icon(Icons.call),
-            Text("   Llamar"),
+            Text("   Contacto"),
             SizedBox(
               width: 10,
             ),
@@ -347,12 +377,18 @@ Widget listadoFarmacias(context) {
             fontSize: 13, color: Colors.black54, fontWeight: FontWeight.w500),
       ),
       RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return HorarioFarmacias(
+                phone: '50371674258',
+              );
+            }));
+          },
           color: Colors.red[300],
           textColor: Colors.white,
           child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
             Icon(Icons.call),
-            Text("   Llamar"),
+            Text("   Contacto"),
             SizedBox(
               width: 10,
             ),
@@ -386,12 +422,18 @@ Widget listadoFarmacias(context) {
             fontSize: 13, color: Colors.black54, fontWeight: FontWeight.w500),
       ),
       RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return HorarioFarmacias(
+                phone: '50379794212',
+              );
+            }));
+          },
           color: Colors.red[300],
           textColor: Colors.white,
           child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
             Icon(Icons.call),
-            Text("   Llamar"),
+            Text("   Contacto"),
             SizedBox(
               width: 10,
             ),
@@ -425,12 +467,18 @@ Widget listadoFarmacias(context) {
             fontSize: 13, color: Colors.black54, fontWeight: FontWeight.w500),
       ),
       RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return HorarioFarmacias(
+                phone: '50379794212',
+              );
+            }));
+          },
           color: Colors.red[300],
           textColor: Colors.white,
           child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
             Icon(Icons.call),
-            Text("   Llamar"),
+            Text("   Contacto"),
             SizedBox(
               width: 10,
             ),
@@ -464,12 +512,18 @@ Widget listadoFarmacias(context) {
             fontSize: 13, color: Colors.black54, fontWeight: FontWeight.w500),
       ),
       RaisedButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context) {
+              return HorarioFarmacias(
+                phone: '50363106786',
+              );
+            }));
+          },
           color: Colors.red[300],
           textColor: Colors.white,
           child: Row(mainAxisSize: MainAxisSize.min, children: <Widget>[
             Icon(Icons.call),
-            Text("   Llamar"),
+            Text("   Contacto"),
             SizedBox(
               width: 10,
             ),
