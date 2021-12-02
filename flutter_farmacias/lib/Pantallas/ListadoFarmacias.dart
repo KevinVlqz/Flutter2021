@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_farmacias/Pantallas/detalleUnitario.dart';
 import 'package:flutter_farmacias/Pantallas/lstfarm.dart';
 import 'package:flutter_farmacias/Pantallas/menu.dart';
 
@@ -124,8 +125,15 @@ child: StreamBuilder(
                           ),Container(
 
                             child: IconButton(
-                            icon: Icon(Icons.favorite,color: Colors.red,size: 30,),
+                            icon: Icon(Icons.description,color: Colors.deepPurple,size: 30,),
                             onPressed: () {
+                                Navigator.push(context, 
+                              MaterialPageRoute(builder: (context){
+                                String n=documentSnapshot.id.toString();
+                                return detalleUnit(ID: n);
+                              }
+                              )
+                              );
                               
                             },
                           ),

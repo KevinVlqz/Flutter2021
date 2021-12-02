@@ -36,6 +36,9 @@ dependencies:
   flutter_map: ^0.14.0
   flutter_polyline_points: ^1.0.0
   get_ip_address: ^0.0.5
+  url_launcher: ^6.0.16
+  animated_splash_screen: ^1.1.0
+  animate_do: ^2.0.0
 
 dev_dependencies:
   flutter_test:

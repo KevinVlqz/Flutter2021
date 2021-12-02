@@ -1,44 +1,27 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_farmacias/Pantallas/ContactoWhat.dart';
-import 'package:flutter_farmacias/Pantallas/menu.dart';
 
-class detallefm extends StatelessWidget {
- 
-  const detallefm({Key? key,}) : super(key: key);
+class detalleUnit extends StatefulWidget {
+  final String ID;
+  const detalleUnit({Key? key, required this.ID,}) : super(key: key);
+  @override
+  _detalleUnitState createState() => _detalleUnitState();
+  
+}
+CollectionReference _productss =
+      FirebaseFirestore.instance.collection('farmacias');
 
+class _detalleUnitState  extends State<detalleUnit> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: "Filas y Columnas",
-        home: Center(
-            child:
-                Farmacias() //HorarioFarmacias(), (Farmacias() Es para la pantalla 1)
-            ));
-  }
-}
- CollectionReference _productss =
-      FirebaseFirestore.instance.collection('farmacias');
-class Farmacias extends StatelessWidget {
- 
-  Widget build(BuildContext context) {
     return Scaffold(
+      
       appBar: AppBar(
-        title: Text("Detalle de Farmacias"),
-        leading: IconButton(
-          icon: Icon(Icons.home),
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return AppFarmacia();
-                },
-              ),
-            );
-          },
-        ),
+        title: Text(
+          
+          "Farmacia seleccionada"),
+        
       ),
       body: Center(
         child: Container(
@@ -48,14 +31,12 @@ class Farmacias extends StatelessWidget {
                     "assets/img/background.jpg",
                   ),
                   fit: BoxFit.cover)),
-          child: marcolistadoFarmacias(context),
-          padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 40),
+          child: marcolistadoFarmacias (context),
+          padding: const EdgeInsets.symmetric(vertical:220,horizontal: 75),
         ),
       ),
     );
   }
-
-}
 
 Widget marcolistadoFarmacias(BuildContext context) {
   return Container(
@@ -64,8 +45,7 @@ Widget marcolistadoFarmacias(BuildContext context) {
         borderRadius: BorderRadius.all(Radius.circular(20))),
     child: 
     listadoFarmacias(context),
-    margin: EdgeInsets.all(5),
-    padding: EdgeInsets.all(15),
+
   );
 }
 
@@ -76,29 +56,25 @@ Widget listadoFarmacias(context) {
             "Detalle de Farmacias",
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: 30, color: Colors.red[600], fontWeight: FontWeight.bold),
+                fontSize: 35, color: Colors.red[600], fontWeight: FontWeight.bold),
           ),
       SizedBox(
-        height:MediaQuery.of(context).size.height/1.3,
+        height:MediaQuery.of(context).size.height/2.2,
         child: StreamBuilder(
-        stream: _productss.snapshots(),
-        builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
-          if (streamSnapshot.hasData) {
-            return ListView.builder(
-              scrollDirection: Axis.vertical,
-              itemCount: streamSnapshot.data!.docs.length,
-              itemBuilder: (context, index) {
-                final DocumentSnapshot documentSnapshot =
-                    streamSnapshot.data!.docs[index];
-                return 
-                
+        stream: FirebaseFirestore.instance.collection('farmacias').doc(widget.ID).snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            var documentSnapshot=snapshot.hasData;
+            DocumentSnapshot? d=snapshot.data as DocumentSnapshot<Object?>?;
+            return Column(
+              children: [
                 Card(
-            
                   child:  Column(
-                        children: [
-                   Text(documentSnapshot['nombreFarmacia'],textAlign: TextAlign.center,
+                        children: [  
+                   Text(
+                     d!['nombreFarmacia'],textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: 20, color: Colors.blue, fontWeight: FontWeight.bold),
+                fontSize: 25, color: Colors.blue, fontWeight: FontWeight.bold),
           ),      
           Divider(
             thickness: 5,
@@ -108,28 +84,28 @@ Widget listadoFarmacias(context) {
 
           Padding(padding: EdgeInsets.all(5)),
           Container(
-              height: 140.0,
+              height: 300.0,
               width: 330.0,
               decoration: BoxDecoration(
                   color: Colors.yellow, //PARA PROBAR CONTAINER
                   borderRadius: new BorderRadius.circular(10.0),
                   image: DecorationImage(
-                    image: NetworkImage(documentSnapshot['foto']),
+                    image: NetworkImage(d['foto']),
                     fit: BoxFit.cover,
                   )
                   )
                   ),
           Text(
-            documentSnapshot['direccion'],
+            d['direccion'],
             textAlign: TextAlign.center,
             style: TextStyle(
-                fontSize: 13, color: Colors.black54, fontWeight: FontWeight.w500),
+                fontSize: 17, color: Colors.black54, fontWeight: FontWeight.w500),
           ),
           RaisedButton(
               onPressed: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
                   return HorarioFarmacias(
-                    phone: documentSnapshot['contacto'].toString(),
+                    phone: d['contacto'].toString(),
                   );
                 }));
                 //'50371674258',
@@ -146,9 +122,8 @@ Widget listadoFarmacias(context) {
                             
                             ],
                           ),
-                    );
-                      
-                  },
+                    ),
+              ],
                 );
               }
 
@@ -166,4 +141,6 @@ Widget listadoFarmacias(context) {
     ],
   );
 }
+ 
 
+}

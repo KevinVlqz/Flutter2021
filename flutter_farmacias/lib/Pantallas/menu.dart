@@ -216,7 +216,7 @@ Widget Fila2(BuildContext context){
               ),
                 ),
               //Image.asset('assets/img/imgfav.png'),
-              Text("Favoritos",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white))
+              Text("Detalle de Farmacias",style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: Colors.white))
             ],
           ),
         ),
