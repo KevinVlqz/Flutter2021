@@ -95,5 +95,9 @@ void abrirWha({@required numero, @required mensaje}) async {
 }
 
 void llamar({@required numero}) {
+<<<<<<< HEAD
   launch("tel:$numero");
+=======
+  launch("tel://$numero");
+>>>>>>> d9fbc57b5f4199032b34f1d2a9bdc0b6a84dfdf3
 }

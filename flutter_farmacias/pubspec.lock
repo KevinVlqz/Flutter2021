@@ -21,7 +21,7 @@ packages:
       name: async
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "2.8.2"
+    version: "2.8.1"
   boolean_selector:
     dependency: transitive
     description:
@@ -246,7 +246,7 @@ packages:
       name: matcher
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.12.11"
+    version: "0.12.10"
   meta:
     dependency: transitive
     description:
@@ -356,7 +356,7 @@ packages:
       name: test_api
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.4.3"
+    version: "0.4.2"
   transparent_image:
     dependency: transitive
     description:
@@ -391,7 +391,11 @@ packages:
       name: url_launcher
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "6.0.17"
+=======
+    version: "6.0.16"
+>>>>>>> d9fbc57b5f4199032b34f1d2a9bdc0b6a84dfdf3
   url_launcher_android:
     dependency: transitive
     description:
@@ -433,7 +437,11 @@ packages:
       name: url_launcher_web
       url: "https://pub.dartlang.org"
     source: hosted
+<<<<<<< HEAD
     version: "2.0.5"
+=======
+    version: "2.0.4"
+>>>>>>> d9fbc57b5f4199032b34f1d2a9bdc0b6a84dfdf3
   url_launcher_windows:
     dependency: transitive
     description:
